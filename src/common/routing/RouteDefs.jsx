@@ -31,7 +31,7 @@ const RouteAnnouncer = ({ routes }) => {
   return (
     <div
       aria-atomic="true"
-      aria-live="assertive"
+      aria-live="polite"
       className="sr-only"
       ref={announcerRef}
       role="status"
