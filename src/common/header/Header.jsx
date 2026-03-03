@@ -140,6 +140,9 @@ const Header = () => {
 
   return (
     <div className={`nav-wrapper ${showNav ? 'nav--visible' : 'nav--hidden'}`}>
+      <a className="skip-to-content" href="#main-content">
+        Skip to content
+      </a>
       {process.env.REACT_APP_ACTIVITIES_ON === 'true' && showHideBits.showActivityTimer && (
         <Countdown date={new Date(1675209600000)} renderer={activityTimerRenderer} />
       )}

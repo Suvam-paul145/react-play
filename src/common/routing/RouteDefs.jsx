@@ -18,11 +18,26 @@ import BackToTop from 'common/components/BackToTop';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { NhostClient, NhostReactProvider } from '@nhost/react';
 import BadgesDashboard from 'common/badges-dashboard';
+import useRouteAnnouncer from 'common/hooks/useRouteAnnouncer';
 
 const nhost = new NhostClient({
   subdomain: process.env.REACT_APP_NHOST_SUBDOMAIN || '',
   region: process.env.REACT_APP_NHOST_REGION || ''
 });
+
+const RouteAnnouncer = ({ routes }) => {
+  const announcerRef = useRouteAnnouncer(routes);
+
+  return (
+    <div
+      aria-atomic="true"
+      aria-live="assertive"
+      className="sr-only"
+      ref={announcerRef}
+      role="status"
+    />
+  );
+};
 
 const RouteDefs = () => {
   // Array of paths used for changing the title of the website dynamically.
@@ -41,6 +56,7 @@ const RouteDefs = () => {
   return (
     <NhostReactProvider nhost={nhost}>
       <BrowserRouter>
+        <RouteAnnouncer routes={routes} />
         <Header />
         <DefMeta routes={routes} />
         <Routes>

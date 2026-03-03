@@ -98,6 +98,9 @@ const PlayList = () => {
 
   return (
     <Fragment>
+      <div aria-atomic="true" aria-live="polite" className="sr-only" role="status">
+        {plays ? `${plays.length} play${plays.length !== 1 ? 's' : ''} found` : ''}
+      </div>
       {isFiltered ? null : <DynamicBanner randomPlay={randomPlay} />}
       {searchTerm ? (
         <div className="search-summary">
@@ -108,7 +111,7 @@ const PlayList = () => {
         ''
       )}
       <div className="sort-by-plays-wrapper">
-        Sort By :
+        <label htmlFor="sort-by-plays">Sort By :</label>
         <select id="sort-by-plays" name="sort-by-plays" value={sortBy} onChange={onChange}>
           {SORT_OPTIONS.map((name, i) => (
             <option key={i} value={name}>
@@ -117,7 +120,7 @@ const PlayList = () => {
           ))}
         </select>
       </div>
-      <ol className="list-plays">
+      <ol aria-label="List of plays" className="list-plays">
         {plays?.map((play, index) => (
           <React.Fragment key={index}>
             <PlayThumbnail key={play.id} play={play} />

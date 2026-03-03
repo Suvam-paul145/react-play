@@ -38,8 +38,16 @@ function PlayCard({ play, cover, likeObject }) {
 
   const linkTo = `/plays/${encodeURI(play.github.toLowerCase())}/${play.slug}`;
 
+  const ariaLabel = [
+    `View play: ${play.name}`,
+    play.user?.displayName ? `by ${play.user.displayName}` : '',
+    play.level?.name ? `${play.level.name} level` : ''
+  ]
+    .filter(Boolean)
+    .join(', ');
+
   return (
-    <Link className="group block" to={linkTo}>
+    <Link aria-label={ariaLabel} className="group block" to={linkTo}>
       <div className="play-card-container max-w-sm bg-white rounded-xl overflow-hidden flex flex-col h-full">
         {cover && (
           <div className="relative h-48">
