@@ -568,3 +568,51 @@ small {
 ::-webkit-scrollbar {
   width: 25px;
 }
+
+/* Skip-to-content link */
+.skip-to-content {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 9999;
+  padding: 0.8rem 1.4rem;
+  background-color: var(--color-brand-primary);
+  color: var(--color-neutral-90);
+  font-size: var(--fs-rg);
+  font-weight: var(--fw-bold);
+  text-decoration: none;
+  border-radius: 0 0 0.5rem 0;
+}
+
+.skip-to-content:focus {
+  left: 0;
+  outline: 2px solid var(--color-neutral-90);
+  outline-offset: 2px;
+}
+
+/* Focus-visible styles */
+*:focus-visible {
+  outline: 2px solid var(--color-brand-primary-dark);
+  outline-offset: 2px;
+}
+
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Focus-visible for main content (skip link target) */
+#main-content:focus {
+  outline: none;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
